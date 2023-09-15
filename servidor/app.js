@@ -1,8 +1,8 @@
 const express = require("express")
-const collection = require("./mongo")
+const collection = require("./database/mongo")
 const cors = require("cors")
 const app = express()
-
+const controllers = require("./controllers")
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
@@ -45,6 +45,7 @@ app.post("/signup",async(req,res)=>{
     }
 
 })
+app.post("/products-cart", controllers.addProductCart);
 
 app.listen(3000, () => {
     console.log('Servidor escuchando en el puerto 3000');
